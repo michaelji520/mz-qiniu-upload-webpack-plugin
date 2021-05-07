@@ -1,0 +1,20 @@
+{
+  "name": "mz-qiniu-upload-webpack-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelji520/mz-qiniu-upload-webpack-plugin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelji520/mz-qiniu-upload-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/michaelji520/mz-qiniu-upload-webpack-plugin#readme"
+}
