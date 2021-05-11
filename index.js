@@ -1,7 +1,15 @@
+
+
 class MZQiniuUploadWebpackPlugin {
-  constructor(options) {
+  constructor(options = {}) {
     this.options = options;
   }
 
-  apply(compiler) {}
+  apply(compiler) {
+    const pluginName = MZQiniuUploadWebpackPlugin.name;
+    compiler.hooks.done.tap(pluginName, (stats) => {
+      console.log(stats);
+    });
+  }
 }
+
