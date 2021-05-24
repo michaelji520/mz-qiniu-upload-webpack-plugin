@@ -6,15 +6,27 @@ module.exports = {
   entry: path.resolve(__dirname, './app.js'),
   output: {
     filename: 'app.[contenthash:8].js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, './dist'),
+    publicPath: path.resolve(__dirname, './dist/assets/'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif|ico)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: './assets'
+        }
+      },
+    ]
   },
   plugins: [
     new MZQiniuUploadWebpackPlugin({
-      bucket: 'mz-bucket',
-      access_key: 'fZv_f_wX_ka0faszVvXcDAgRMRWEnjiyOHfCBuGa',
-      secret_key: '-UXI4VD90-ZJzoGW--NOj8UUtA0fMmYpox5_WVUf',
+      BUCKET_NAME: 'michaelji',
+      ACCESS_KEY: 'fZv_f_wX_ka0faszVvXcDAgRMRWEnjiyOHfCBuGa',
+      SECRET_KEY: '-UXI4VD90-ZJzoGW--NOj8UUtA0fMmYpox5_WVUf',
       dirToUpload: path.resolve(__dirname, './test/dist/'),
-      dirsToRefresh: ['http://cdn.zhangji.xyz/']
+      dirsToRefresh: ['https://static.zhangji.xyz/']
     })
   ]
 };
