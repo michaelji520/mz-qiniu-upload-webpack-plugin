@@ -1,3 +1,8 @@
+/**
+ * This is a sample webpack config file for test the plugin
+ * To use it, you need to replace the plugin options with your own options
+ */
+
 const path = require('path');
 const MZQiniuUploadWebpackPlugin = require('../index.js');
 
@@ -21,12 +26,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new MZQiniuUploadWebpackPlugin({
-      BUCKET_NAME: 'michaelji',
-      ACCESS_KEY: 'fZv_f_wX_ka0faszVvXcDAgRMRWEnjiyOHfCBuGa',
-      SECRET_KEY: '-UXI4VD90-ZJzoGW--NOj8UUtA0fMmYpox5_WVUf',
-      dirToUpload: path.resolve(__dirname, './test/dist/'),
-      dirsToRefresh: ['https://static.zhangji.xyz/']
+    new MZQiniuUploadWebpackPlugin(/* replace follow options with your own  */{
+      BUCKET_NAME: 'BUCKET_NAME',
+      ACCESS_KEY: 'ACCESS_KEY',
+      SECRET_KEY: 'SECRET_KEY',
+      dirsToRefresh: ['dir']
     })
   ]
 };

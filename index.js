@@ -15,14 +15,14 @@ class MZQiniuUploadWebpackPlugin {
       const dir = compiler.options.output.path;
       const files = Object.keys(stats.compilation.assets);
 
-      console.log('\nUploading files...')
+      console.log('\nUploading files...\n');
       Promise.all(files.map((i) => {
         return this.qiniu.upload(i, dir);
       })).then((res) => {
-        console.log('All files uploaded!')
+        console.log('\nAll files uploaded!\n');
         return this.options.dirsToRefresh ? this.qiniu.refreshCDNDirs(this.options.dirsToRefresh) : Promise.resolve();
       }).then((info) => {
-        console.log('Refresh CDN success!')
+        this.options.dirsToRefresh && console.log('\nRefresh CDN success!\n');
       }).catch((err) => {console.log(err)});
 
     });
