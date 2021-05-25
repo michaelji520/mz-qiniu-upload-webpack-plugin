@@ -4,7 +4,6 @@ class MZQiniuUploadWebpackPlugin {
   options = {};
   qiniu = null;
   constructor(options = {}) {
-    console.log(options);
     this.options = options;
     this.qiniu = new Qiniu(this.options);
   }
@@ -12,8 +11,20 @@ class MZQiniuUploadWebpackPlugin {
   apply(compiler) {
     const pluginName = MZQiniuUploadWebpackPlugin.name;
     compiler.hooks.done.tap(pluginName, (stats) => {
-      const files = stats.compilation.assets;
-      console.log(files);
+      // 文件导出的dir
+      const dir = compiler.options.output.path;
+      const files = Object.keys(stats.compilation.assets);
+
+      console.log('\nUploading files...')
+      Promise.all(files.map((i) => {
+        return this.qiniu.upload(i, dir);
+      })).then((res) => {
+        console.log('All files uploaded!')
+        return this.options.dirsToRefresh ? this.qiniu.refreshCDNDirs(this.options.dirsToRefresh) : Promise.resolve();
+      }).then((info) => {
+        console.log('Refresh CDN success!')
+      }).catch((err) => {console.log(err)});
+
     });
   }
 }
