@@ -1,8 +1,7 @@
 const Qiniu = require('./lib/qiniu');
 
 class MZQiniuUploadWebpackPlugin {
-  options = {};
-  qiniu = null;
+
   constructor(options = {}) {
     this.options = options;
     this.qiniu = new Qiniu(this.options);
